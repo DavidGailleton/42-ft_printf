@@ -3,6 +3,7 @@ NAME=		libftprintf.a
 SRC_DIR=	src
 INC_DIR=	include
 LIBFT_DIR=	libft
+BUILD_DIR=	.build
 
 SRC=		$(SRC_DIR)/ft_printf.c \
 			$(SRC_DIR)/ft_putnbr_base.c \
@@ -13,8 +14,8 @@ SRC=		$(SRC_DIR)/ft_printf.c \
 			$(SRC_DIR)/print_str.c \
 			$(SRC_DIR)/print_unsigned.c \
 
-OBJ=		$(SRC:.c=.o)
-DEP=		$(SRC:.c=.d)
+OBJ=		$(SRC:%.c=$(BUILD_DIR)/%.o)
+DEP=		$(SRC:%.c=$(BUILD_DIR)/%.d)
 
 CC=			cc
 CFLAGS=		-Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_DIR) -MMD -MP
@@ -27,7 +28,8 @@ $(NAME): $(OBJ)
 	cp $(LIBFT_DIR)/libft.a $(NAME)
 	$(AR) $(NAME) $(OBJ)
 
-%.o: %.c
+$(BUILD_DIR)/%.o: %.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
