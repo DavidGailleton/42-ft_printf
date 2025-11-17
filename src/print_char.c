@@ -6,13 +6,13 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 11:56:36 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/17 12:01:47 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/17 12:45:57 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	print_char(char	c)
+int	print_char(char c)
 {
 	return (write(1, &c, 1));
 }

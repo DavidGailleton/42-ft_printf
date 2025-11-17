@@ -6,11 +6,11 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 12:16:44 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/17 12:17:14 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/17 12:43:17 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "libft.h"
 
 int	ft_putnbr_base(unsigned long long nbr, char *base, int base_size)
 {
