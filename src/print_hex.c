@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   print_hex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/17 10:52:23 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/17 12:34:18 by dgaillet         ###   ########lyon.fr   */
+/*   Created: 2025/11/17 12:06:35 by dgaillet          #+#    #+#             */
+/*   Updated: 2025/11/17 12:38:35 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../include/ft_printf.h"
+#include <unistd.h>
 
-int	ft_printf(const char *first_arg, ...);
+int	print_hex(unsigned long long nbr, int upper)
+{
+	if (nbr == 0)
+		return (write(1, "0", 1));
+	if (upper)
+		return (ft_putnbr_base(nbr, "0123456789ABCDEF", 16));
+	else
+		return (ft_putnbr_base(nbr, "0123456789abcdef", 16));
 
-int	ft_putnbr_base(unsigned long long nbr, char *base, int base_size);
-
-int	print_char(char	c);
-int	print_str(char *str);
-int	print_pointer(unsigned long long p);
-int	print_number(int nbr);
-int	print_unsigned(unsigned int nbr);
-int	print_hex(unsigned long long p, int	upper);
-
-#endif
+}

@@ -71,7 +71,7 @@ ALL_DEP=	$(DEP) $(BONUS_DEP)
 
 
 %.o:		%.c
-			$(CC) -MMD -MP -o $@ -c $< $(CFLAGS) -I$(HEADER)
+			$(CC) -MMD -MP -o $@ -c $< $(CFLAGS) -I.
 
 all:		$(NAME)
 
