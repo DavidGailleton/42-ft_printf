@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_pointer_bonus.c                              :+:      :+:    :+:   */
+/*   ft_main_arg.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/17 12:19:16 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/19 20:16:31 by dgaillet         ###   ########lyon.fr   */
+/*   Created: 2025/11/19 15:38:58 by dgaillet          #+#    #+#             */
+/*   Updated: 2025/11/19 15:45:26 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_printf_bonus.h"
-
-int	print_pointer(t_arg *arg, unsigned long long p)
+static int	is_main_arg(char c)
 {
-	int	count;
+	if (c == 'c' || c == 's' || c == 'p' || c == 'd'
+		|| c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == '%')
+		return (1);
+	return (0);
+}
 
-	count = 0;
-	if (!p)
+char	ft_main_arg(char *str)
+{
+	while (*str)
 	{
-		ft_putstr_fd("(nil)", 1);
-		return (5);
+		if (is_main_arg(*str))
+			break ;
+		str++;
 	}
-	if (arg->arg)
-		ft_putstr_fd("", 1);
-	count += write(1, "0x", 2);
-	return (count + ft_putnbr_base(p, "0123456789abcdef", 16));
+	return (*str);
 }

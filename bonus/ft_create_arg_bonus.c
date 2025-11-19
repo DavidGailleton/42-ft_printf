@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_pointer_bonus.c                              :+:      :+:    :+:   */
+/*   ft_create_arg_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/17 12:19:16 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/19 20:16:31 by dgaillet         ###   ########lyon.fr   */
+/*   Created: 2025/11/19 15:52:18 by dgaillet          #+#    #+#             */
+/*   Updated: 2025/11/19 18:29:53 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 #include "ft_printf_bonus.h"
 
-int	print_pointer(t_arg *arg, unsigned long long p)
+t_arg	*ft_create_arg(void)
 {
-	int	count;
+	t_arg	*arg;
 
-	count = 0;
-	if (!p)
-	{
-		ft_putstr_fd("(nil)", 1);
-		return (5);
-	}
-	if (arg->arg)
-		ft_putstr_fd("", 1);
-	count += write(1, "0x", 2);
-	return (count + ft_putnbr_base(p, "0123456789abcdef", 16));
+	arg = malloc(sizeof(t_arg));
+	if (!arg)
+		return (NULL);
+	arg->minus = 0;
+	arg->zero = 0;
+	arg->dot = 0;
+	arg->hash = 0;
+	arg->space = 0;
+	arg->plus = 0;
+	return (arg);
 }

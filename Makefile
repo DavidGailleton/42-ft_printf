@@ -25,6 +25,10 @@ B_SRC=		$(B_SRC_DIR)/ft_printf_bonus.c \
 			$(B_SRC_DIR)/print_pointer_bonus.c \
 			$(B_SRC_DIR)/print_str_bonus.c \
 			$(B_SRC_DIR)/print_unsigned_bonus.c \
+			$(B_SRC_DIR)/ft_create_arg_bonus.c \
+			$(B_SRC_DIR)/ft_main_arg_bonus.c \
+			$(B_SRC_DIR)/ft_parsing_bonus.c \
+			$(B_SRC_DIR)/utils_flag_bonus.c
 
 
 OBJ=		$(SRC:%.c=$(BUILD_DIR)/%.o)

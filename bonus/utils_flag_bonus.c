@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_pointer_bonus.c                              :+:      :+:    :+:   */
+/*   utils_flag_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/17 12:19:16 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/19 20:16:31 by dgaillet         ###   ########lyon.fr   */
+/*   Created: 2025/11/19 17:07:22 by dgaillet          #+#    #+#             */
+/*   Updated: 2025/11/19 19:53:38 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "ft_printf_bonus.h"
+#include <unistd.h>
 
-int	print_pointer(t_arg *arg, unsigned long long p)
+int	nbr_size_base(unsigned long long nb, int base_size)
 {
 	int	count;
 
 	count = 0;
-	if (!p)
+	if (nb == 0)
+		return (1);
+	while (nb)
 	{
-		ft_putstr_fd("(nil)", 1);
-		return (5);
+		count++;
+		nb /= base_size;
 	}
-	if (arg->arg)
-		ft_putstr_fd("", 1);
-	count += write(1, "0x", 2);
-	return (count + ft_putnbr_base(p, "0123456789abcdef", 16));
+	return (count);
+}
+
+int	print_chars(int nb, char c)
+{
+	int	count;
+
+	count = 0;
+	while (nb > 0)
+	{
+		count += write(1, &c, 1);
+		nb--;
+	}
+	return (count);
 }

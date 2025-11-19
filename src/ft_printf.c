@@ -6,7 +6,7 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 10:54:03 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/17 12:47:03 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/19 17:52:14 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ int	ft_printf(const char *first_arg, ...)
 			nb_print += write(1, &first_arg[i], 1);
 		i++;
 	}
+	va_end(args);
 	return (nb_print);
 }
