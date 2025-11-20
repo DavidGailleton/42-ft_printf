@@ -6,7 +6,7 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 12:26:23 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/20 16:52:30 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/20 17:26:09 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 static int	padding_size(int space, int plus, t_arg *arg, int nbr)
 {
 	int	padding;
-	int	dot;
 	int	nbr_size;
 
 	if (arg->padding < 0)
@@ -27,7 +26,7 @@ static int	padding_size(int space, int plus, t_arg *arg, int nbr)
 	else
 		nbr_size = nbr_size_base(nbr, 10);
 	if (arg->dot > nbr_size)
-		nbr_size = dot;
+		nbr_size = arg->dot;
 	padding = padding - nbr_size;
 	if (arg->zero >= 0)
 		padding = padding - arg->zero;
@@ -45,6 +44,8 @@ static int	print_nb_flags(t_arg *arg, int nbr)
 
 	if (arg->plus >= 0 && nbr > 0)
 		plus = 1;
+	else
+		plus = 0;
 	if (arg->plus >= 0 || arg->space < 0)
 		space = 0;
 	else

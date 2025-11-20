@@ -6,59 +6,48 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:35:15 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/20 14:36:01 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/20 18:07:52 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 #include "libft.h"
 
-static int	next_not_digit(char *str)
+static void	get_padding(t_arg *arg, char *str)
 {
-	int	i;
-
-	i = 0;
-	while (ft_isdigit(str[i]))
-		i++;
-	return (i);
-}
-
-static int	nb_to_skip(char *str)
-{
-	if (*str == '-')
-		return (1 + next_not_digit(&str[1]));
-	else if (*str == '0')
-		return (1 + next_not_digit(&str[1]));
-	else if (*str == '.')
-		return (1 + next_not_digit(&str[1]));
-	else if (*str == ' ')
-		return (1 + next_not_digit(&str[1]));
-	return (1);
+	str--;
+	while (ft_isdigit(*str) && *str != '%')
+		str--;
+	str++;
+	arg->padding = ft_atoi(str);
 }
 
 static void	ft_parse_str(t_arg *arg, char *str, char main_arg)
 {
-	if (*str != '0' && ft_isdigit(*str))
-	{
-		arg->padding = ft_atoi(str);
-		str += nb_to_skip(str);
-	}
-	while (*str != main_arg)
+	while (*str != main_arg && *str != '.')
 	{
 		if (*str == '-')
 			arg->minus = ft_atoi(&str[1]);
-		else if (*str == '0')
+		else if (*str == '0' && !ft_isdigit(str[-1]))
 			arg->zero = ft_atoi(&str[1]);
-		else if (*str == '.')
-			arg->dot = ft_atoi(&str[1]);
 		else if (*str == '#')
 			arg->hash = 1;
 		else if (*str == ' ')
 			arg->space = ft_atoi(&str[1]);
 		else if (*str == '+')
 			arg->plus = 1;
-		str += nb_to_skip(str);
+		str++;
 	}
+	if (*str == '.')
+	{
+		arg->dot = ft_atoi(str + 1);
+		if (!(arg->minus >= 0 || arg->zero >= 0 || arg->hash >= 0
+				|| arg->space >= 0 || arg->plus >= 0))
+			get_padding(arg, str);
+	}
+	else if (!(arg->minus >= 0 || arg->zero >= 0 || arg->hash >= 0
+			|| arg->space >= 0 || arg->plus >= 0))
+		get_padding(arg, str);
 }
 
 t_arg	*ft_parsing(char *str)
