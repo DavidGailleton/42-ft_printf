@@ -6,7 +6,7 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 10:54:03 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/19 20:50:02 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/20 14:47:12 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ static int	ft_print_arg_flags(t_arg *arg, va_list args)
 	else if (arg->arg == 's')
 		count += print_str(arg, va_arg(args, char *));
 	else if (arg->arg == 'p')
-		count += print_pointer(arg, va_arg(args, unsigned long long));
+		count += print_pointer(arg, va_arg(args, long long));
 	else if (arg->arg == 'd' || arg->arg == 'i')
 		count += print_number(arg, va_arg(args, int));
 	else if (arg->arg == 'u')
-		count += print_unsigned(arg, va_arg(args, unsigned long));
+		count += print_unsigned(arg, va_arg(args, unsigned int));
 	else if (arg->arg == 'x' || arg->arg == 'X')
 		count += print_hex(arg, va_arg(args, unsigned int));
 	count += print_chars(arg->minus - count, ' ');

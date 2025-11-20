@@ -6,7 +6,7 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:52:18 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/19 18:29:53 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/20 14:26:50 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ t_arg	*ft_create_arg(void)
 	arg = malloc(sizeof(t_arg));
 	if (!arg)
 		return (NULL);
-	arg->minus = 0;
-	arg->zero = 0;
-	arg->dot = 0;
-	arg->hash = 0;
-	arg->space = 0;
-	arg->plus = 0;
+	arg->padding = -1;
+	arg->minus = -1;
+	arg->zero = -1;
+	arg->dot = -1;
+	arg->hash = -1;
+	arg->space = -1;
+	arg->plus = -1;
 	return (arg);
 }
