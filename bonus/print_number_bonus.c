@@ -6,7 +6,7 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 12:26:23 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/21 14:32:24 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/21 15:48:29 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	print_nb_flags(t_arg *arg, int nbr)
 	int	padding;
 	int	plus;
 
-	if (arg->plus >= 0 && nbr > 0)
+	if (arg->plus >= 0 && nbr >= 0)
 		plus = 1;
 	else
 		plus = 0;
@@ -68,7 +68,9 @@ int	print_number(t_arg *arg, int nbr)
 	count += print_nb_flags(arg, nbr);
 	if (nbr < 0)
 	{
-		count += write(1, "-", 1);
+		if (write(1, "-", 1) < 0)
+			return (-10000);
+		count++;
 		p_nbr = nbr * -1;
 		if (arg->dot < 0)
 			count += print_chars(arg->zero - nbr_size_base(p_nbr, 10) - 1, '0');

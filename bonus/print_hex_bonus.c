@@ -6,7 +6,7 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 12:06:35 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/21 14:24:18 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/21 15:39:21 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,37 @@ static int	print_nb_flags(t_arg *arg, unsigned int nbr)
 	return (count);
 }
 
+static int	print_hex_zero(t_arg *arg)
+{
+	int	count;
+
+	count = 0;
+	if (write(1, "0", 1) < 0)
+		return (-10000);
+	count++;
+	count += print_chars(arg->zero - 1, '0');
+	count += print_chars(arg->dot - 1, '0');
+	return (count);
+}
+
 int	print_hex(t_arg *arg, unsigned int nbr)
 {
-	int		count;
+	int	count;
+	int	temp;
 
 	count = 0;
 	count += print_nb_flags(arg, nbr);
 	if (nbr == 0 && arg->dot)
-	{
-		count += write(1, "0", 1);
-		count += print_chars(arg->zero - 1, '0');
-		count += print_chars(arg->dot - 1, '0');
-	}
+		count += print_hex_zero(arg);
 	else
 	{
+		temp = count;
 		if (arg->hash > 0 && arg->arg == 'X')
 			count += write(1, "0X", 2);
 		else if (arg->hash > 0)
 			count += write(1, "0x", 2);
+		if (temp > count)
+			return (-10000);
 		count += print_chars(arg->zero - count - nbr_size_base(nbr, 16), '0');
 		count += print_chars(arg->dot - nbr_size_base(nbr, 16), '0');
 		if (arg->arg == 'X')

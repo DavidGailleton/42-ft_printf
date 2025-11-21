@@ -6,7 +6,7 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 10:54:03 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/20 14:47:12 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/21 14:59:50 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ static int	ft_print_arg_flags(t_arg *arg, va_list args)
 		count += print_unsigned(arg, va_arg(args, unsigned int));
 	else if (arg->arg == 'x' || arg->arg == 'X')
 		count += print_hex(arg, va_arg(args, unsigned int));
+	if (count < 0)
+		return (-1);
 	count += print_chars(arg->minus - count, ' ');
+	if (count < 0)
+		return (-1);
 	return (count);
 }
 
@@ -43,7 +47,7 @@ static int	ft_print_arg(char *str, va_list args)
 
 	arg = ft_parsing(str);
 	if (!arg)
-		return (0);
+		return (-1);
 	if (arg->arg == '%')
 		count = write(1, "%", 1);
 	else
@@ -72,12 +76,14 @@ int	ft_printf(const char *first_arg, ...)
 	va_list	args;
 	int		nb_print;
 	int		i;
+	int		temp;
 
 	nb_print = 0;
 	va_start(args, first_arg);
 	i = 0;
 	while (first_arg[i])
 	{
+		temp = nb_print;
 		if (first_arg[i] == '%')
 		{
 			i++;
@@ -86,6 +92,8 @@ int	ft_printf(const char *first_arg, ...)
 		}
 		else
 			nb_print += write(1, &first_arg[i], 1);
+		if (temp > nb_print)
+			return (-1);
 		i++;
 	}
 	va_end(args);

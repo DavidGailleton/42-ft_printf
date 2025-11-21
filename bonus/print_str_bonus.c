@@ -6,7 +6,7 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 12:02:03 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/20 15:34:58 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/21 15:32:08 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ int	print_str(t_arg *arg, char *str)
 			return (print_chars(arg->padding, ' '));
 		if (arg->padding > 6)
 			count += print_chars(arg->padding - 6, ' ');
-		return (count + write(1, "(null)", 6));
+		if (write(1, "(null)", 6) < 0)
+			return (-10000);
+		return (count + 6);
 	}
 	if (arg->dot > (int) ft_strlen(str) || arg->dot < 0)
 		arg->dot = ft_strlen(str);
@@ -32,5 +34,7 @@ int	print_str(t_arg *arg, char *str)
 		count += print_chars(arg->padding - arg->dot, ' ');
 	else if (!str[0] && arg->space > 0)
 		return (write(1, " ", 1));
-	return (count + write(1, str, arg->dot));
+	if (write(1, str, arg->dot) < 0)
+		return (-10000);
+	return (count + arg->dot);
 }

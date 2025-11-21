@@ -6,7 +6,7 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 16:11:53 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/21 14:31:36 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/21 15:54:15 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 int	main(void)
 {
 	printf("===\t-\t===\n\n");
-	printf("%d - ", printf("...% d...\n", -1));
-	printf("%d\n\n", ft_printf("...% d...\n", -1));
+	printf("%d - ", printf("...%p...%p...\n", 0, 0));
+	printf("%d\n\n", ft_printf("...%p...%p...\n", 0, 0));
 }

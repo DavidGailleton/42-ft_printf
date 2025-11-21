@@ -6,7 +6,7 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 17:07:22 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/19 19:53:38 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/21 15:00:35 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ int	print_chars(int nb, char c)
 	count = 0;
 	while (nb > 0)
 	{
-		count += write(1, &c, 1);
+		if (write(1, &c, 1) < 0)
+			return (-100000);
+		count++;
 		nb--;
 	}
 	return (count);
