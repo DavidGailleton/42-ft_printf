@@ -6,7 +6,7 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 10:52:23 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/20 16:34:46 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/21 12:10:56 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_arg
 int		ft_printf(const char *first_arg, ...);
 
 int		ft_putnbr_base_ll(unsigned long long nbr, char *base, int base_size);
-int		ft_putnbr_base(unsigned int nbr, char *base, int base_size);
+int		ft_putnbr_base(unsigned int nbr, char *base, int base_size, int limit);
 char	ft_main_arg(char *str);
 t_arg	*ft_create_arg(void);
 t_arg	*ft_parsing(char *str);

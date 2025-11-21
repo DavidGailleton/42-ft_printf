@@ -6,7 +6,7 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:35:15 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/20 18:07:52 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/21 11:49:23 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ static void	ft_parse_str(t_arg *arg, char *str, char main_arg)
 	if (*str == '.')
 	{
 		arg->dot = ft_atoi(str + 1);
-		if (!(arg->minus >= 0 || arg->zero >= 0 || arg->hash >= 0
+		if (!(arg->minus >= 0 || arg->hash >= 0
 				|| arg->space >= 0 || arg->plus >= 0))
 			get_padding(arg, str);
 	}
-	else if (!(arg->minus >= 0 || arg->zero >= 0 || arg->hash >= 0
+	else if (!(arg->minus >= 0 || arg->hash >= 0
 			|| arg->space >= 0 || arg->plus >= 0))
 		get_padding(arg, str);
 }

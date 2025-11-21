@@ -6,7 +6,7 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 12:06:35 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/20 14:47:53 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/21 12:13:16 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	print_hex(t_arg *arg, unsigned int nbr)
 		count += print_chars(arg->zero - count - nbr_size_base(nbr, 16), '0');
 		count += print_chars(arg->dot - nbr_size_base(nbr, 16), '0');
 		if (arg->arg == 'X')
-			count += ft_putnbr_base(nbr, "0123456789ABCDEF", 16);
+			count += ft_putnbr_base(nbr, "0123456789ABCDEF", 16, 2147483647);
 		else
-			count += ft_putnbr_base(nbr, "0123456789abcdef", 16);
+			count += ft_putnbr_base(nbr, "0123456789abcdef", 16, 2147483647);
 	}
 	return (count);
 }

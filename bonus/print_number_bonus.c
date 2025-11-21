@@ -6,7 +6,7 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 12:26:23 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/20 17:26:09 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/21 12:18:58 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,9 @@ static int	padding_size(int space, int plus, t_arg *arg, int nbr)
 		nbr_size = nbr_size_base(nbr * -1, 10);
 	else
 		nbr_size = nbr_size_base(nbr, 10);
-	if (arg->dot > nbr_size)
+	if (arg->dot > nbr_size || arg->dot == 0)
 		nbr_size = arg->dot;
 	padding = padding - nbr_size;
-	if (arg->zero >= 0)
-		padding = padding - arg->zero;
 	if (nbr < 0)
 		padding--;
 	return (padding);
@@ -52,7 +50,8 @@ static int	print_nb_flags(t_arg *arg, int nbr)
 		space = 1;
 	padding = padding_size(space, plus, arg, nbr);
 	count = 0;
-	count += print_chars(padding, ' ');
+	if (arg->dot >= 0 || arg->zero < 0)
+		count += print_chars(padding, ' ');
 	count += print_chars(space, ' ');
 	count += print_chars(plus, '+');
 	return (count);
@@ -70,10 +69,12 @@ int	print_number(t_arg *arg, int nbr)
 	{
 		count += write(1, "-", 1);
 		p_nbr = nbr * -1;
-		count += print_chars(arg->zero - nbr_size_base(p_nbr, 10) - 1, '0');
+		if (arg->dot < 0)
+			count += print_chars(arg->zero - nbr_size_base(p_nbr, 10) - 1, '0');
 	}
-	else
+	else if (arg->dot < 0)
 		count += print_chars(arg->zero - nbr_size_base(p_nbr, 10), '0');
 	count += print_chars(arg->dot - nbr_size_base(p_nbr, 10), '0');
-	return (count + ft_putnbr_base(p_nbr, "0123456789", 10));
+	count += ft_putnbr_base(p_nbr, "0123456789", 10, arg->dot);
+	return (count);
 }
