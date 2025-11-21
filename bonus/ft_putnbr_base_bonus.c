@@ -6,7 +6,7 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 12:16:44 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/21 12:16:33 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/21 14:25:19 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static int	ft_putnbr_base_extra(unsigned int nbr, char *base, int base_size)
 	i = 1 + ft_putnbr_base_extra(nbr / base_size, base, base_size);
 	ft_putchar_fd(base[nbr % base_size], 1);
 	return (i);
-
 }
+
 int	ft_putnbr_base(unsigned int nbr, char *base, int base_size, int limit)
 {
 	if (nbr == 0 && limit != 0)
