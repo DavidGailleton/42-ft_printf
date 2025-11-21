@@ -6,7 +6,7 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 10:54:03 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/19 17:52:14 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/21 14:47:19 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ int	ft_printf(const char *first_arg, ...)
 	va_list	args;
 	int		nb_print;
 	int		i;
+	int		temp;
 
 	nb_print = 0;
 	va_start(args, first_arg);
 	i = 0;
 	while (first_arg[i])
 	{
+		temp = nb_print;
 		if (first_arg[i] == '%')
 		{
 			i++;
@@ -53,6 +55,8 @@ int	ft_printf(const char *first_arg, ...)
 		}
 		else
 			nb_print += write(1, &first_arg[i], 1);
+		if (temp > nb_print)
+			return (-1);
 		i++;
 	}
 	va_end(args);

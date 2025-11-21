@@ -6,7 +6,7 @@
 /*   By: dgaillet <dgaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 12:02:03 by dgaillet          #+#    #+#             */
-/*   Updated: 2025/11/17 12:51:56 by dgaillet         ###   ########lyon.fr   */
+/*   Updated: 2025/11/21 14:54:08 by dgaillet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ int	print_str(char *str)
 {
 	if (!str)
 	{
-		ft_putstr_fd("(null)", 1);
+		if (write(1, "(null)", 6) < 0)
+			return (-1);
 		return (6);
 	}
-	ft_putstr_fd(str, 1);
+	if (write(1, str, ft_strlen(str)) < 0)
+		return (-1);
 	return (ft_strlen(str));
 }
