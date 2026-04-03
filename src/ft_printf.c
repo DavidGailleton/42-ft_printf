@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include <stdarg.h>
 #include <unistd.h>
-#include "ft_printf.h"
 
 static int	ft_print_arg(char c, va_list args)
 {
@@ -48,7 +48,7 @@ int	ft_printf(const char *first_arg, ...)
 	while (first_arg[i])
 	{
 		temp = nb_print;
-		if (first_arg[i] == '%')
+		if (first_arg[i] == '%' && first_arg[i + 1] != '\0')
 		{
 			i++;
 			nb_print += ft_print_arg(first_arg[i], args);
