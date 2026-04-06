@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "ft_printf_bonus.h"
+#include <stdlib.h>
 
 t_arg	*ft_create_arg(void)
 {

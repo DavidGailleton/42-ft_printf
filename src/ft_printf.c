@@ -42,10 +42,12 @@ int	ft_printf(const char *first_arg, ...)
 	int		i;
 	int		temp;
 
+	if (!first_arg)
+		return (-1);
 	nb_print = 0;
 	va_start(args, first_arg);
-	i = 0;
-	while (first_arg[i])
+	i = -1;
+	while (first_arg[++i])
 	{
 		temp = nb_print;
 		if (first_arg[i] == '%' && first_arg[i + 1] != '\0')
@@ -53,11 +55,10 @@ int	ft_printf(const char *first_arg, ...)
 			i++;
 			nb_print += ft_print_arg(first_arg[i], args);
 		}
-		else
+		else if (first_arg[i] != '%')
 			nb_print += write(1, &first_arg[i], 1);
-		if (temp > nb_print)
+		if (temp >= nb_print)
 			return (-1);
-		i++;
 	}
 	va_end(args);
 	return (nb_print);

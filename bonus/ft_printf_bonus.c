@@ -71,6 +71,16 @@ static int	ft_to_skip(char *str)
 	return (count);
 }
 
+static int	handle_arg(const char *s, va_list args, int *i)
+{
+	int	n;
+
+	(*i)++;
+	n = ft_print_arg((char *)&s[*i], args);
+	*i += ft_to_skip((char *)&s[*i]);
+	return (n);
+}
+
 int	ft_printf(const char *first_arg, ...)
 {
 	va_list	args;
@@ -78,23 +88,20 @@ int	ft_printf(const char *first_arg, ...)
 	int		i;
 	int		temp;
 
+	if (!first_arg)
+		return (-1);
 	nb_print = 0;
+	i = -1;
 	va_start(args, first_arg);
-	i = 0;
-	while (first_arg[i])
+	while (first_arg[++i])
 	{
 		temp = nb_print;
-		if (first_arg[i] == '%' && first_arg[i + 1] != '\0')
-		{
-			i++;
-			nb_print += ft_print_arg((char *)&first_arg[i], args);
-			i += ft_to_skip((char *)&first_arg[i]);
-		}
-		else
+		if (first_arg[i] == '%' && first_arg[i + 1])
+			nb_print += handle_arg(first_arg, args, &i);
+		else if (first_arg[i] != '%')
 			nb_print += write(1, &first_arg[i], 1);
-		if (temp > nb_print)
+		if (temp >= nb_print)
 			return (-1);
-		i++;
 	}
 	va_end(args);
 	return (nb_print);

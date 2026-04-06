@@ -23,23 +23,27 @@ typedef struct s_arg
 	int		hash;
 	int		space;
 	int		plus;
-}	t_arg;
+}			t_arg;
 
-int		ft_printf(const char *first_arg, ...);
+int			ft_printf(const char *first_arg, ...) __attribute__((format(printf,
+						1, 2)));
+int			ft_printf(const char *first_arg, ...);
 
-int		ft_putnbr_base_ll(unsigned long long nbr, char *base, int base_size);
-int		ft_putnbr_base(unsigned int nbr, char *base, int base_size, int limit);
-char	ft_main_arg(char *str);
-t_arg	*ft_create_arg(void);
-t_arg	*ft_parsing(char *str);
-int		print_chars(int nb, char c);
-int		nbr_size_base(unsigned long long nb, int base_size);
+int			ft_putnbr_base_ll(unsigned long long nbr, char *base,
+				int base_size);
+int			ft_putnbr_base(unsigned int nbr, char *base, int base_size,
+				int limit);
+char		ft_main_arg(char *str);
+t_arg		*ft_create_arg(void);
+t_arg		*ft_parsing(char *str);
+int			print_chars(int nb, char c);
+int			nbr_size_base(unsigned long long nb, int base_size);
 
-int		print_char(t_arg *arg, char c);
-int		print_str(t_arg *arg, char *str);
-int		print_pointer(t_arg *arg, unsigned long long p);
-int		print_number(t_arg *arg, int nbr);
-int		print_unsigned(t_arg *arg, unsigned int nbr);
-int		print_hex(t_arg *arg, unsigned int nbr);
+int			print_char(t_arg *arg, char c);
+int			print_str(t_arg *arg, char *str);
+int			print_pointer(t_arg *arg, unsigned long long p);
+int			print_number(t_arg *arg, int nbr);
+int			print_unsigned(t_arg *arg, unsigned int nbr);
+int			print_hex(t_arg *arg, unsigned int nbr);
 
 #endif

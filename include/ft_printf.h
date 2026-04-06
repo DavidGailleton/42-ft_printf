@@ -13,6 +13,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+int	ft_printf(const char *first_arg, ...) __attribute__((format(printf, 1, 2)));
 int	ft_printf(const char *first_arg, ...);
 
 int	ft_putnbr_base(unsigned long long nbr, char *base, int base_size);

@@ -15,7 +15,7 @@
 
 int	print_char(t_arg *arg, char c)
 {
-	int		count;
+	int	count;
 
 	count = 0;
 	count += print_chars(arg->padding - 1, ' ');

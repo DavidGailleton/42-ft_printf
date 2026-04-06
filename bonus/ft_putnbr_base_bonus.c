@@ -40,8 +40,8 @@ int	ft_putnbr_base(unsigned int nbr, char *base, int base_size, int limit)
 	return (ft_putnbr_base_extra(nbr, base, base_size));
 }
 
-static int	ft_putnbr_base_ll_extra(unsigned long long nbr
-		, char *base, int base_size)
+static int	ft_putnbr_base_ll_extra(unsigned long long nbr, char *base,
+		int base_size)
 {
 	int		i;
 	char	temp;

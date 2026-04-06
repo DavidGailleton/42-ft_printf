@@ -41,12 +41,12 @@ static void	ft_parse_str(t_arg *arg, char *str, char main_arg)
 	if (*str == '.')
 	{
 		arg->dot = ft_atoi(str + 1);
-		if (!(arg->minus >= 0 || arg->hash >= 0
-				|| arg->space >= 0 || arg->plus >= 0))
+		if (!(arg->minus >= 0 || arg->hash >= 0 || arg->space >= 0
+				|| arg->plus >= 0))
 			get_padding(arg, str);
 	}
-	else if (!(arg->minus >= 0 || arg->hash >= 0
-			|| arg->space >= 0 || arg->plus >= 0))
+	else if (!(arg->minus >= 0 || arg->hash >= 0 || arg->space >= 0
+			|| arg->plus >= 0))
 		get_padding(arg, str);
 }
 

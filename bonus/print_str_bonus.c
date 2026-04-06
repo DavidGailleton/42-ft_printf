@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_printf_bonus.h"
+#include "libft.h"
 
 int	print_str(t_arg *arg, char *str)
 {
@@ -28,7 +28,7 @@ int	print_str(t_arg *arg, char *str)
 			return (-10000);
 		return (count + 6);
 	}
-	if (arg->dot > (int) ft_strlen(str) || arg->dot < 0)
+	if (arg->dot > (int)ft_strlen(str) || arg->dot < 0)
 		arg->dot = ft_strlen(str);
 	if (arg->padding > 0)
 		count += print_chars(arg->padding - arg->dot, ' ');
